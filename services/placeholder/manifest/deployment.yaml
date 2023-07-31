@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devwiki-placeholder
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: devwiki-placeholder
+  template:
+    metadata:
+      labels:
+        app: devwiki-placeholder
+    spec:
+      containers:
+        - name: devwiki-placeholder
+          image: us-central1-docker.pkg.dev/ringed-sentinel-391823/bnet-reg/devwiki-placeholder:latest

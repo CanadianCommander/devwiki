@@ -1,10 +1,9 @@
 # DevWiki
-#### Your company has a wiki. Why shouldn't you? 
+#### Your company has a wiki, why shouldn't you? 
 
 DevWiki is a personal wiki for developers. Use it to keep track of your notes, ideas, and todos.
 Say no! to the endless tabs in your text editor. Say yes! to DevWiki.
-
---- 
+ 
 ## Features
 That don't exist yet lol. 
 
@@ -27,7 +26,6 @@ The content of an encrypted block is encrypted client side using your encryption
 This means you can store sensitive information in your notes without worrying about the server owner (me)
 snooping through your sensitive information. The only downside is, search cannot be performed on encrypted blocks. 
 
----
 ## Development 
 
 - [Getting Started](TODO)

@@ -1,6 +1,5 @@
+[Back](../README.md)
 # Development Environment
-
----
 
 # Linux
 ### Pre-requisites
@@ -44,3 +43,5 @@ Now you should now be able to see devwiki running in your browser at [dev.devwik
 
 ### Step 1 
 Install Linux. Don't worry about any partitions called "Windows" you won't need those anymore. Just overwrite them with Linux. 🤣
+
+[Back](../README.md)

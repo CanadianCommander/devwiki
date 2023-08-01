@@ -15,7 +15,7 @@ You might also want to install these awesome tools. Not required but they sure a
 - [kubens](https://github.com/ahmetb/kubectx)
 
 ### Setup
-There are two ways you can op to setup the devwiki dev environment. You can either create cluster once using 
+There are two ways you can opt to setup the devwiki dev environment. You can either create cluster once using 
 ```bash 
 ./devcluster/setup.sh 
 ```

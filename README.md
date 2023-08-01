@@ -28,5 +28,5 @@ snooping through your sensitive information. The only downside is, search cannot
 
 ## Development 
 
-- [Getting Started](TODO)
+- [Getting Started](./doc/development.md) - How to setup your development environment.
 - [System Design](./doc/design.md) - The overall design of the system.

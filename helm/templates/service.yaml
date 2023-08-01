@@ -1,0 +1,14 @@
+{{ range .Values.services }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .name }}
+spec:
+  ports:
+    - name: web
+      port: 80
+      targetPort: 80
+      protocol: TCP
+  selector:
+    app: {{ .name }}
+{{ end }}

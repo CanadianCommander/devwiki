@@ -1,0 +1,17 @@
+apiVersion: skaffold/v4beta6
+kind: Config
+
+build:
+  artifacts:
+    - image: user
+      context: ./frontend/user/
+      docker:
+        dockerfile: ./frontend/user/Dockerfile
+
+manifests:
+  helm:
+    releases:
+      - name: devwiki
+        chartPath: ./helm
+        valuesFiles:
+          - ./helm/values.yaml

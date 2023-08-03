@@ -1,8 +1,6 @@
 import {ApplicationRef, Inject, Injector, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
 import {EditorComponent} from "./editor.component";
 import {createCustomElement} from "@angular/elements";
 
@@ -15,7 +13,6 @@ import {createCustomElement} from "@angular/elements";
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
   ],
   providers: [],
 })

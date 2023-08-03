@@ -1,0 +1,22 @@
+hostname: dev.devwiki.io
+
+services:
+  - name: user
+    image: user:latest
+    path: /
+    resources:
+      limits:
+        cpu: 1
+        memory: 128Mi
+      requests:
+        cpu: 50m
+        memory: 64Mi
+  - name: editor
+    image: editor:latest
+    path: /editor/
+    resources:
+      limits:
+        memory: 2Gi
+      requests:
+        cpu: '1'
+        memory: 1Gi

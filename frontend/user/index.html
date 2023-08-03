@@ -3,11 +3,20 @@
 
     <head>
         <title>htmx ui</title>
+
+        <!-- TODO figure out prod js file name -->
+        <script src="/editor/runtime.js" type="module"></script>
+        <script src="/editor/polyfills.js" type="module"></script>
+        <script src="/editor/styles.js" defer></script>
+        <script src="/editor/vendor.js" type="module"></script>
+        <script src="/editor/main.js" type="module"></script>
     </head>
 
     <body>
         <h4>Editor Dev Scaffolding</h4>
         <!-- Make this work with Angular Elements! -->
+        <wiki-editor></wiki-editor>
+        <wiki-editor></wiki-editor>
         <wiki-editor></wiki-editor>
     </body>
 </html>

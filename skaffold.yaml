@@ -5,8 +5,18 @@ build:
   artifacts:
     - image: user
       context: ./frontend/user/
+      sync:
+        infer:
+          - '**/*'
       docker:
         dockerfile: ./frontend/user/Dockerfile
+    - image: editor
+      context: ./frontend/editor/
+      sync:
+        infer:
+          - '**/*'
+      docker:
+        dockerfile: ./frontend/editor/dev.Dockerfile
 
 manifests:
   helm:
@@ -14,4 +24,4 @@ manifests:
       - name: devwiki
         chartPath: ./helm
         valuesFiles:
-          - ./helm/values.yaml
+          - ./helm/values-dev.yaml

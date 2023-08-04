@@ -3,13 +3,15 @@ kind: Config
 
 build:
   artifacts:
-    - image: user
-      context: ./frontend/user/
+    - image: ui
+      context: ./services/
       sync:
         infer:
           - '**/*'
       docker:
-        dockerfile: ./frontend/user/Dockerfile
+        dockerfile: ./services/dev.Dockerfile
+        buildArgs:
+          SERVICE: ui
     - image: editor
       context: ./frontend/editor/
       sync:
@@ -17,6 +19,9 @@ build:
           - '**/*'
       docker:
         dockerfile: ./frontend/editor/dev.Dockerfile
+  local:
+    useBuildkit: true
+    concurrency: 1
 
 manifests:
   helm:

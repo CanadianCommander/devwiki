@@ -1,8 +1,8 @@
 hostname: dev.devwiki.io
 
 services:
-  - name: user
-    image: user:latest
+  - name: ui
+    image: ui:latest
     path: /
     resources:
       limits:
@@ -13,7 +13,7 @@ services:
         memory: 64Mi
   - name: editor
     image: editor:latest
-    path: /editor/
+    path: /component/editor/
     resources:
       limits:
         memory: 2Gi

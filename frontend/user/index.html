@@ -5,16 +5,15 @@
         <title>htmx ui</title>
 
         <!-- TODO figure out prod js file name -->
-        <script src="/editor/runtime.js" type="module"></script>
-        <script src="/editor/polyfills.js" type="module"></script>
-        <script src="/editor/styles.js" defer></script>
-        <script src="/editor/vendor.js" type="module"></script>
-        <script src="/editor/main.js" type="module"></script>
+        <script src="/editor/runtime.js" type="module" defer></script>
+        <script src="/editor/polyfills.js" type="module" defer></script>
+        <script src="/editor/vendor.js" type="module" defer></script>
+        <script src="/editor/main.js" type="module" defer></script>
+        <link  rel="stylesheet" href="/editor/styles.css" type="text/css" />
     </head>
 
     <body>
         <h4>Editor Dev Scaffolding</h4>
-        <!-- Make this work with Angular Elements! -->
         <wiki-editor></wiki-editor>
         <wiki-editor></wiki-editor>
         <wiki-editor></wiki-editor>

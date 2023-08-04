@@ -5,4 +5,6 @@ COPY . /var/src
 
 RUN yarn install --frozen-lockfile
 
-ENTRYPOINT ["yarn", "ng", "serve", "--host", "0.0.0.0", "--port", "80", "--disable-host-check"]
+# live reload disabled because nginx-gateway-controller currently doesn't support websockets.
+# Re-enable when https://github.com/nginxinc/nginx-kubernetes-gateway/issues/315 is fixed.
+ENTRYPOINT ["yarn", "ng", "serve", "--live-reload", "false", "--host", "0.0.0.0", "--port", "80", "--disable-host-check"]

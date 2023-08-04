@@ -1,3 +1,9 @@
 
 # yarn
 .yarn/unplugged
+
+# built artifacts
+/dist
+
+# angular
+/.angular

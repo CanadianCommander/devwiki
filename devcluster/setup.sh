@@ -24,6 +24,10 @@ kubectl patch deployment nginx-gateway-nginx-kubernetes-gateway -n nginx-gateway
 kubectl create namespace networking
 kubectl apply -f ./manifest/cluster-gateway.yaml -n networking
 
+# install metrics server
+helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
+helm upgrade --install metrics-server metrics-server/metrics-server --namespace kube-system --set args[0]="--kubelet-insecure-tls=true"
+
 echo Your Ready to Dev!
 
 popd

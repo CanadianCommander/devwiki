@@ -1,6 +1,7 @@
 package pages
 
 import (
+	"github.com/gin-contrib/multitemplate"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -10,25 +11,28 @@ import (
 // ===============================================
 
 // initEditorPage setups the editor page routes
-func initEditorPage(router *gin.RouterGroup) {
+func initEditorPage(router *gin.RouterGroup, renderer multitemplate.Renderer) {
 
 	router.GET("/", editIndex)
+	AddTemplate(renderer, "edit/index", "layout/primary", "page/edit/index")
+
 	router.POST("/btn", btn)
+
 }
 
 // ===============================================
 // Endpoints
 // ===============================================
 
-// GET /
+// GET /edit
 func editIndex(c *gin.Context) {
 
-	c.HTML(http.StatusOK, "index.gohtml", gin.H{
-		"Title": "Hello World",
+	c.HTML(http.StatusOK, "edit/index", gin.H{
+		"LoadEditor": true,
 	})
 }
 
-// POST /btn
+// POST /edit/btn
 func btn(c *gin.Context) {
 	c.String(http.StatusOK, "<wiki-editor></wiki-editor>")
 }

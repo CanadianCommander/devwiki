@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>DevWiki - Editor</title>
+
+    <script src="/assets/js/htmx-1.9.4.js"></script>
+
+    <link rel="stylesheet" href="/assets/css/tailwinds.css">
+</head>
+<body class="bg-background text-glyph">
+    {{ template "body" }}
+</body>
+
+{{ if eq .LoadEditor true }}
+    <!-- Load the editor component -->
+    <!-- async has no effect because the script isn't external -->
+    {{ range getEditorComponentScripts }}
+        <script src="{{ . }}"></script>
+    {{ end }}
+    {{ range getEditorComponentStyles }}
+        <link rel="stylesheet" href="{{ . }}">
+    {{ end }}
+{{ end }}
+
+</html>

@@ -1,8 +1,8 @@
 package pages
 
 import (
+	"github.com/gin-contrib/multitemplate"
 	"github.com/gin-gonic/gin"
-	"html/template"
 )
 
 // ===============================================
@@ -12,27 +12,24 @@ import (
 // SetupPages setups the editor page routes
 func SetupPages() *gin.Engine {
 	router := gin.Default()
+	renderer := multitemplate.NewRenderer()
 
-	registerTemplateFunctions(router)
-	initEditorPage(router.Group("/editor"))
+	initLandingPage(router.Group("/welcome"), renderer)
+	initEditorPage(router.Group("/edit"), renderer)
+
 	loadStaticContent(router)
 
+	router.HTMLRender = renderer
 	return router
 }
+
+// ===============================================
+// Private
+// ===============================================
 
 // loadStaticContent sets up static content paths for the editor
 func loadStaticContent(router *gin.Engine) {
 
 	router.StaticFile("/favicon.ico", "./assets/img/favicon.webp")
-	router.LoadHTMLGlob("./assets/html/**/*")
 	router.Static("/assets", "./assets")
-}
-
-// registerTemplateFunctions for use during template rendering
-func registerTemplateFunctions(router *gin.Engine) {
-
-	router.SetFuncMap(template.FuncMap{
-		"getEditorComponentScripts": getEditorComponentScripts,
-		"getEditorComponentStyles":  getEditorComponentStyles,
-	})
 }

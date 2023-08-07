@@ -1,0 +1,14 @@
+{{ define "body" }}
+    <h1>HTMX + Angular</h1>
+    <h2>match made in heaven</h2>
+
+    <button hx-post="/edit/btn" hx-target="#editors" hx-swap="afterbegin">
+        Load Editor
+    </button>
+
+    <div id="editors">
+
+    </div>
+
+    {{ template "components/filenav" }}
+{{ end }}

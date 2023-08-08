@@ -1,6 +1,30 @@
-{{ define "body" }}
+{{ define "content" }}
 
-    <h1> LANDING PAGE YO </h1>
-    <a href="/edit"> To Editor </a>
+    <div class="w-full h-full flex flex-col items-center justify-center">
+
+        <div class="modal w-5/6 max-w-screen-md h-4/6 flex flex-col p-2">
+            <div class="h-24 flex flex-col justify-center">
+                <h2 class="text-4xl text-center">DevWiki</h2>
+            </div>
+            <div class="bg-background rounded-md flex flex-col flex-grow p-2">
+                <p class="leading-7 flex-grow">
+                    Welcome to your personal developer wiki. This is a place to store all your notes,
+                    code snippets, and other useful information. Think of it as replacing your text editor. No more
+                    sifting through text files to find that one snippet you wrote 6 months ago. Keep all your notes
+                    organized and accessible from anywhere with <span class="font-bold">DevWiki</span>.
+                </p>
+
+                <div class="h-24 flex flex-col items-center ">
+                    <button class="btn-primary">
+                        Get Started
+                    </button>
+                    <a href="https://github.com/CanadianCommander/devwiki" class="mt-6">
+                        Support The Project <img class="inline ml-2" src="{{ GetImageInTheme "/assets/img/github/github-mark.svg"}}" width="32" />
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 {{ end }}

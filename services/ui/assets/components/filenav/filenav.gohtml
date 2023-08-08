@@ -1,9 +1,18 @@
 {{ define "components/filenav" }}
 
-    <div>
-        <h1> I'm the file nav yo </h1>
+    <div class="h-full w-72 bg-background-raised-2 flex flex-col p-2">
+        <div class="h-24 p-1 flex flex-row justify-between items-end">
+            <img src="/assets/img/logo.webp" class="h-full" />
+
+            {{ if eq .Overlay true }}
+            <button class="btn-icon">
+                <span class="material-icons text-4xl">chevron_left</span>
+            </button>
+            {{ end }}
+        </div>
+        <div class="flex-grow rounded-md bg-background p-2">
+            files N stuff
+        </div>
     </div>
-
-
 
 {{ end }}

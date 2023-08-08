@@ -1,0 +1,8 @@
+
+.btn-primary {
+    @apply bg-primary hover:bg-focus active:bg-active text-glyph px-4 py-2 text-center rounded-md;
+}
+
+.btn-icon {
+    @apply hover:bg-focus/10 active:bg-active/25 text-glyph p-0 rounded-md flex flex-col justify-center;
+}

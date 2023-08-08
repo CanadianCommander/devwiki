@@ -1,10 +1,11 @@
-package pages
+package template
 
 import (
 	"fmt"
 	"github.com/gin-contrib/multitemplate"
 	"github.com/rs/zerolog/log"
 	"html/template"
+	"io"
 	"os"
 	"path"
 	"strings"
@@ -28,12 +29,56 @@ const (
 // - name: the name of the new template
 // - templateFiles: the files that comprise the template
 func AddTemplate(renderer multitemplate.Renderer, name string, templateFiles ...string) {
-	renderer.AddFromFilesFuncs(name, defaultTemplateFuncs(), append(tmplPathSlice(templateFiles), getDefaultComponentTmpls()...)...)
+	templates := append(tmplPathSlice(templateFiles), getDefaultComponentTmpls()...)
+	renderer.AddFromFilesFuncs(name, defaultTemplateFuncs(), templates...)
+}
+
+// AddTemplateDef adds a template definition to the renderer
+// The key difference between this and AddTemplate is that this method lets you specify a template definition to render
+// ### params
+// - renderer: the renderer to add the template to
+// - name: the name of the new template
+// - defName: the name of the template definition to render
+// - templateFiles: the files that comprise the template
+func AddTemplateDef(renderer multitemplate.Renderer, name string, defName string, templateFiles ...string) {
+
+	templates := make([]string, 0, len(templateFiles))
+	templates = append(templates, fmt.Sprintf("{{template \"%s\"}}", defName))
+	for _, file := range templateFiles {
+		templateData, err := readTemplate(tmplPath(file))
+		if err != nil {
+			log.Fatal().Msgf("Could not load template file: %s, during startup", file)
+			panic(err)
+		}
+		templates = append(templates, templateData)
+	}
+
+	renderer.AddFromStringsFuncs(
+		name,
+		defaultTemplateFuncs(),
+		templates...)
 }
 
 // ===============================================
 // private
 // ===============================================
+
+// readTemplate loads the contents of a template from disk.
+func readTemplate(path string) (string, error) {
+	file, err := os.Open(path)
+	if err != nil {
+		log.Error().Msgf("could not open template file: %s", path)
+		return "", err
+	}
+
+	bytes, err := io.ReadAll(file)
+	if err != nil {
+		log.Error().Msgf("could not read template file: %s", path)
+		return "", err
+	}
+
+	return string(bytes), nil
+}
 
 // DefaultComponentTemplates holds a list of default component templates.
 // Used to cache the default component templates.
@@ -96,7 +141,9 @@ func getDefaultComponentTmpls() []string {
 // defaultTemplateFuncs gets the default template functions
 func defaultTemplateFuncs() template.FuncMap {
 	return template.FuncMap{
-		"getEditorComponentScripts": getEditorComponentScripts,
-		"getEditorComponentStyles":  getEditorComponentStyles,
+		"GetEditorComponentScripts": getEditorComponentScripts,
+		"GetEditorComponentStyles":  getEditorComponentStyles,
+		"GetThemeCss":               GetCurrentThemeCss,
+		"GetImageInTheme":           GetImageInTheme,
 	}
 }

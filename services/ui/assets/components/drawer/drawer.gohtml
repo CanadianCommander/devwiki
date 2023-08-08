@@ -1,0 +1,12 @@
+{{ define "components/drawer" }}
+    <div class="mobile-drawer fixed top-0 h-screen">
+        <div class="hamburger-menu p-8">
+            <span class="material-icons text-4xl cursor-pointer"
+                  hx-get="/components/filenav?overlay=true"
+                  hx-swap="outerHTML"
+                  hx-target="closest .hamburger-menu">
+                menu
+            </span>
+        </div>
+    </div>
+{{ end }}

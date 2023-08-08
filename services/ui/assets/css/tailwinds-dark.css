@@ -1,3 +1,5 @@
+@import "global.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,7 +9,7 @@
         --color-primary: 234 88 12;
         --color-glyph: 255 255 255;
         --color-surface: 82 82 91;
-        --color-focus: 249 115 22;
+        --color-focus: 241 97 17;
         --color-active: 192 65 12;
         --color-background: 24 24 27;
         --color-background-raised: 39 39 42;

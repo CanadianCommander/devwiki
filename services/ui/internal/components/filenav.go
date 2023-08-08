@@ -1,4 +1,4 @@
-package pages
+package components
 
 import (
 	"github.com/CanadianCommander/devwiki/services/ui/internal/template"
@@ -11,18 +11,18 @@ import (
 // Public
 // ===============================================
 
-func initLandingPage(router *gin.RouterGroup, renderer multitemplate.Renderer) {
-
-	router.GET("/", welcomeIndex)
-	template.AddTemplate(renderer, "welcome/index", "layout/primary", "page/welcome/index")
-
+func InitFileNav(router *gin.RouterGroup, renderer multitemplate.Renderer) {
+	router.GET("/filenav", filenav)
+	template.AddTemplateDef(renderer, "components/filenav", "components/filenav", "components/filenav/filenav")
 }
 
 // ===============================================
 // Endpoints
 // ===============================================
 
-// GET /welcome
-func welcomeIndex(c *gin.Context) {
-	c.HTML(http.StatusOK, "welcome/index", gin.H{})
+// GET components/filenav
+func filenav(c *gin.Context) {
+	c.HTML(http.StatusOK, "components/filenav", gin.H{
+		"Overlay": c.Query("overlay") == "true",
+	})
 }

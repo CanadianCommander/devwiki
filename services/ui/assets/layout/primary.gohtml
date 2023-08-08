@@ -3,21 +3,34 @@
 <head>
     <title>DevWiki - Editor</title>
 
-    <script src="/assets/js/htmx-1.9.4.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="/assets/css/tailwinds.css">
+    <script src="/assets/js/htmx-1.9.4.js"></script>
+    <link rel="stylesheet" href="{{ GetThemeCss }}">
 </head>
-<body class="bg-background text-glyph">
-    {{ template "body" }}
+<body class="primary-layout bg-background text-glyph w-screen h-screen flex flex-col">
+    <div class="flex-grow w-100 grid">
+        <!-- On desktop show file nav. On mobile Hamburger -->
+        <div class="hidden lg:inline h-full">
+            {{ template "components/filenav" . }}
+        </div>
+        <div class="inline lg:hidden h-full fixed z-10">
+            {{ template "components/drawer" . }}
+        </div>
+
+        <div>
+            {{ template "content" }}
+        </div>
+    </div>
 </body>
 
 {{ if eq .LoadEditor true }}
     <!-- Load the editor component -->
     <!-- async has no effect because the script isn't external -->
-    {{ range getEditorComponentScripts }}
+    {{ range GetEditorComponentScripts }}
         <script src="{{ . }}"></script>
     {{ end }}
-    {{ range getEditorComponentStyles }}
+    {{ range GetEditorComponentStyles }}
         <link rel="stylesheet" href="{{ . }}">
     {{ end }}
 {{ end }}

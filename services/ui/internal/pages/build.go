@@ -1,6 +1,7 @@
 package pages
 
 import (
+	"github.com/CanadianCommander/devwiki/services/ui/internal/components"
 	"github.com/gin-contrib/multitemplate"
 	"github.com/gin-gonic/gin"
 )
@@ -14,8 +15,12 @@ func SetupPages() *gin.Engine {
 	router := gin.Default()
 	renderer := multitemplate.NewRenderer()
 
+	// Pages
 	initLandingPage(router.Group("/welcome"), renderer)
 	initEditorPage(router.Group("/edit"), renderer)
+
+	// Components
+	components.InitFileNav(router.Group("/components"), renderer)
 
 	loadStaticContent(router)
 

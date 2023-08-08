@@ -1,0 +1,15 @@
+
+
+.primary-layout {
+    > div {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen(lg) {
+    .primary-layout {
+        > div {
+            grid-template-columns: min-content 1fr;
+        }
+    }
+}

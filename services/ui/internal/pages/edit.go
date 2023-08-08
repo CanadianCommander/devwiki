@@ -1,6 +1,7 @@
 package pages
 
 import (
+	"github.com/CanadianCommander/devwiki/services/ui/internal/template"
 	"github.com/gin-contrib/multitemplate"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -14,7 +15,7 @@ import (
 func initEditorPage(router *gin.RouterGroup, renderer multitemplate.Renderer) {
 
 	router.GET("/", editIndex)
-	AddTemplate(renderer, "edit/index", "layout/primary", "page/edit/index")
+	template.AddTemplate(renderer, "edit/index", "layout/primary", "page/edit/index")
 
 	router.POST("/btn", btn)
 

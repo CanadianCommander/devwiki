@@ -40,11 +40,11 @@ Now you should now be able to see devwiki running in your browser at [dev.devwik
 
 At this point you can start making changes to the code and skaffold will automatically sync your changes. The only notable 
 exception is tailwindcss changes for server rendered pages. If you make changes that require new tailwinds classes then
-you must regenerate the tailwindcss file. To do this run the following command from the `services/ui` directory.
+you must regenerate the tailwindcss files. To do this run the following command from the `services/ui` directory.
 ```bash
-tailwindcss -c ./assets/tailwind.config.js -i ./assets/css/tailwinds-base.css -o ./assets/css/tailwinds.css 
+./buildcss.sh
 ```
-If you want you can add the `--watch` flag to keep this command running and automatically regenerate the tailwinds css
+If you want you can add the `--watch-[dark|light]` flag to keep this command running and automatically regenerate the tailwinds css
 file when you make changes that require additional tailwind classes.
 
 # Windows 

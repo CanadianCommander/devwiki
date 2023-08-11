@@ -1,11 +1,17 @@
 {{ define "components/filenav" }}
 
-    <div class="h-full w-72 bg-background-raised-2 flex flex-col p-2">
+    {{ $additionalClasses := "" }}
+
+    {{ if eq .Hidden true }}
+        {{ $additionalClasses = "hidden" }}
+    {{ end }}
+
+    <div class="h-full w-72 bg-background-raised-2 flex flex-col p-2 {{ $additionalClasses }}">
         <div class="h-24 p-1 flex flex-row justify-between items-end">
             <img src="/assets/img/logo.webp" class="h-full" />
 
             {{ if eq .Overlay true }}
-            <button class="btn-icon">
+            <button class="btn-icon lg:hidden" title="Hide">
                 <span class="material-icons text-4xl">chevron_left</span>
             </button>
             {{ end }}
@@ -16,3 +22,4 @@
     </div>
 
 {{ end }}
+{{ template "components/filenav" .}}

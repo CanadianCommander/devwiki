@@ -13,7 +13,7 @@ import (
 
 func InitFileNav(router *gin.RouterGroup, renderer multitemplate.Renderer) {
 	router.GET("/filenav", filenav)
-	template.AddTemplateDef(renderer, "components/filenav", "components/filenav", "components/filenav/filenav")
+	template.AddTemplate(renderer, "components/filenav", "components/filenav/filenav")
 }
 
 // ===============================================
@@ -24,5 +24,6 @@ func InitFileNav(router *gin.RouterGroup, renderer multitemplate.Renderer) {
 func filenav(c *gin.Context) {
 	c.HTML(http.StatusOK, "components/filenav", gin.H{
 		"Overlay": c.Query("overlay") == "true",
+		"Hidden":  c.Query("hidden") == "true",
 	})
 }

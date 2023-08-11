@@ -20,7 +20,9 @@ func SetupPages() *gin.Engine {
 	initEditorPage(router.Group("/edit"), renderer)
 
 	// Components
-	components.InitFileNav(router.Group("/components"), renderer)
+	componentGroup := router.Group("/components")
+	components.InitFileNav(componentGroup, renderer)
+	components.InitLeftNav(componentGroup, renderer)
 
 	loadStaticContent(router)
 

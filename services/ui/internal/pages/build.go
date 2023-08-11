@@ -16,8 +16,9 @@ func SetupPages() *gin.Engine {
 	renderer := multitemplate.NewRenderer()
 
 	// Pages
+	initViewPage(router.Group("/"), renderer)
 	initLandingPage(router.Group("/welcome"), renderer)
-	initEditorPage(router.Group("/edit"), renderer)
+	initEditPage(router.Group("/edit"), renderer)
 
 	// Components
 	componentGroup := router.Group("/components")

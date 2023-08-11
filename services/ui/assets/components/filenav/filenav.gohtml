@@ -1,20 +1,16 @@
 {{ define "components/filenav" }}
 
-    {{ $additionalClasses := "" }}
+    <div class="h-full w-72 bg-background-raised-2 flex flex-col p-2">
+        <div class="h-24 p-1 flex flex-col items-start">
+            <a href="/" class="h-3/6">
+                <img src="{{GetImageInTheme "/assets/img/logo.svg"}}" class="h-full"/>
+            </a>
 
-    {{ if eq .Hidden true }}
-        {{ $additionalClasses = "hidden" }}
-    {{ end }}
-
-    <div class="h-full w-72 bg-background-raised-2 flex flex-col p-2 {{ $additionalClasses }}">
-        <div class="h-24 p-1 flex flex-row justify-between items-end">
-            <img src="/assets/img/logo.webp" class="h-full" />
-
-            {{ if eq .Overlay true }}
-            <button class="btn-icon lg:hidden" title="Hide">
-                <span class="material-icons text-4xl">chevron_left</span>
-            </button>
-            {{ end }}
+            <div class="flex flex-row w-full justify-end">
+                <button class="leftnav-toggle btn-icon lg:hidden" title="Collapse">
+                    <span class="material-icons text-4xl">chevron_left</span>
+                </button>
+            </div>
         </div>
         <div class="flex-grow rounded-md bg-background p-2">
             files N stuff

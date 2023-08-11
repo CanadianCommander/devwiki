@@ -1,14 +1,17 @@
 {{ define "layout/leftnav" }}
-    <div class="leftnav fixed lg:relative h-full z-10" hx-get="/components/leftnav?show={{not .Show}}" hx-swap="outerHTML">
+    <div class="leftnav fixed lg:relative h-full z-10"
+         hx-get="/components/leftnav?show={{not .Show}}"
+         hx-swap="outerHTML"
+         hx-trigger="click from:.leftnav-toggle">
         <div class="{{ if not .Show }} hidden {{ end }} lg:inline z-20 relative h-full">
-            {{ template "components/filenav" .Filenav }}
+            {{ template "components/filenav" }}
         </div>
         <div class="z-10 lg:hidden relative">
             <div class="mobile-drawer fixed top-0 h-screen">
                 <div class="hamburger-menu p-8">
-                <span class="material-icons text-4xl cursor-pointer">
-                    menu
-                </span>
+                    <span class="leftnav-toggle material-icons text-4xl cursor-pointer">
+                        menu
+                    </span>
                 </div>
             </div>
         </div>

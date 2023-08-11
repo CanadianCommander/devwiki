@@ -5,7 +5,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="/assets/js/htmx-1.9.4.js"></script>
+    <script async src="/assets/lib/htmx/htmx-1.9.4.min.js"></script>
     <link rel="stylesheet" href="{{ GetThemeCss }}">
 </head>
 <body class="primary-layout bg-background text-glyph w-screen h-screen flex flex-col">
@@ -17,16 +17,4 @@
         </div>
     </div>
 </body>
-
-{{ if eq .LoadEditor true }}
-    <!-- Load the editor component -->
-    <!-- async has no effect because the script isn't external -->
-    {{ range GetEditorComponentScripts }}
-        <script src="{{ . }}"></script>
-    {{ end }}
-    {{ range GetEditorComponentStyles }}
-        <link rel="stylesheet" href="{{ . }}">
-    {{ end }}
-{{ end }}
-
 </html>

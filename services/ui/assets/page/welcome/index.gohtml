@@ -4,7 +4,10 @@
 
         <div class="modal w-5/6 max-w-screen-md h-4/6 flex flex-col p-2">
             <div class="h-24 flex flex-col justify-center">
-                <h2 class="text-4xl text-center">DevWiki</h2>
+                <h2 class="text-4xl text-center">
+                    <img src="{{ GetImageInTheme "/assets/img/logo.svg" }}" class="inline w-12 mr-2" />
+                    DevWiki
+                </h2>
             </div>
             <div class="bg-background rounded-md flex flex-col flex-grow p-2">
                 <p class="leading-7 flex-grow">
@@ -15,9 +18,11 @@
                 </p>
 
                 <div class="h-24 flex flex-col items-center ">
-                    <button class="btn-primary">
-                        Get Started
-                    </button>
+                    <a href="/">
+                        <button class="btn-primary">
+                            Get Started
+                        </button>
+                    </a>
                     <a href="https://github.com/CanadianCommander/devwiki" class="mt-6">
                         Support The Project <img class="inline ml-2" src="{{ GetImageInTheme "/assets/img/github/github-mark.svg"}}" width="32" />
                     </a>

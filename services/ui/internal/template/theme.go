@@ -39,6 +39,6 @@ func GetImageInTheme(imagePath string) string {
 		log.Error().Msgf("could not get image in theme: %s", imagePath)
 		return imagePath
 	} else {
-		return fmt.Sprintf("%s-light.%s", matches[1], matches[2])
+		return fmt.Sprintf("%s-dark.%s", matches[1], matches[2])
 	}
 }

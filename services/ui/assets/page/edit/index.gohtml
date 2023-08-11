@@ -9,4 +9,13 @@
     <div id="editors">
 
     </div>
+
+
+    <!-- Load the editor component -->
+    {{ range GetEditorComponentScripts }}
+        <script src="{{ . }}"></script>
+    {{ end }}
+    {{ range GetEditorComponentStyles }}
+        <link rel="stylesheet" href="{{ . }}">
+    {{ end }}
 {{ end }}

@@ -67,7 +67,7 @@
 
   font-weight: 400;
 
-  src: url(/assets/vendor/material/material.ttf) format('truetype');
+  src: url(/assets/lib/material/material.ttf) format('truetype');
 }
 
 .material-icons {
@@ -655,6 +655,10 @@ video {
   margin-left: 0.5rem;
 }
 
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
 .mt-6 {
   margin-top: 1.5rem;
 }
@@ -679,6 +683,10 @@ video {
   height: 6rem;
 }
 
+.h-3\/6 {
+  height: 50%;
+}
+
 .h-4\/6 {
   height: 66.666667%;
 }
@@ -689,6 +697,10 @@ video {
 
 .h-screen {
   height: 100vh;
+}
+
+.w-12 {
+  width: 3rem;
 }
 
 .w-5\/6 {
@@ -727,20 +739,20 @@ video {
   flex-direction: column;
 }
 
-.items-end {
-  align-items: flex-end;
+.items-start {
+  align-items: flex-start;
 }
 
 .items-center {
   align-items: center;
 }
 
-.justify-center {
-  justify-content: center;
+.justify-end {
+  justify-content: flex-end;
 }
 
-.justify-between {
-  justify-content: space-between;
+.justify-center {
+  justify-content: center;
 }
 
 .rounded-md {
@@ -792,10 +804,6 @@ video {
 }
 
 @media (min-width: 1024px) {
-  .lg\:static {
-    position: static;
-  }
-
   .lg\:relative {
     position: relative;
   }
@@ -806,9 +814,5 @@ video {
 
   .lg\:hidden {
     display: none;
-  }
-
-  .lg\:h-full {
-    height: 100%;
   }
 }

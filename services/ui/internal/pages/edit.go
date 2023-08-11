@@ -11,8 +11,8 @@ import (
 // Public
 // ===============================================
 
-// initEditorPage setups the editor page routes
-func initEditorPage(router *gin.RouterGroup, renderer multitemplate.Renderer) {
+// initEditPage setups the editor page routes
+func initEditPage(router *gin.RouterGroup, renderer multitemplate.Renderer) {
 
 	router.GET("/", editIndex)
 	template.AddTemplate(renderer, "edit/index", "layout/primary", "page/edit/index")
@@ -28,9 +28,7 @@ func initEditorPage(router *gin.RouterGroup, renderer multitemplate.Renderer) {
 // GET /edit
 func editIndex(c *gin.Context) {
 
-	c.HTML(http.StatusOK, "edit/index", gin.H{
-		"LoadEditor": true,
-	})
+	c.HTML(http.StatusOK, "edit/index", gin.H{})
 }
 
 // POST /edit/btn

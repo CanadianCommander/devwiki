@@ -8,19 +8,26 @@ import (
 )
 
 // ===============================================
-// Public
+// Type
 // ===============================================
 
-func InitFileNav(router *gin.RouterGroup, renderer multitemplate.Renderer) {
-	router.GET("/filenav", filenav)
-	template.AddTemplate(renderer, "components/filenav", "components/filenav/index")
+type FileNavComponent struct {
 }
 
 // ===============================================
-// Endpoints
+// Public
 // ===============================================
 
-// GET components/filenav
-func filenav(c *gin.Context) {
+func (fileNav *FileNavComponent) Name() string {
+	return "components/filenav"
+}
+
+func (fileNav *FileNavComponent) RegisterComponent(router *gin.RouterGroup, renderer multitemplate.Renderer) error {
+	router.GET("/filenav", fileNav.Render)
+	template.AddTemplate(renderer, fileNav.Name(), "components/filenav/index")
+	return nil
+}
+
+func (fileNav *FileNavComponent) Render(c *gin.Context) {
 	c.HTML(http.StatusOK, "components/filenav", gin.H{})
 }

@@ -7,21 +7,27 @@ import (
 )
 
 // ===============================================
-// Public
+// Types
 // ===============================================
 
-// InitLeftNav initializes the leftnav component
-func InitLeftNav(router *gin.RouterGroup, renderer multitemplate.Renderer) {
-	router.GET("/leftnav", leftnav)
-	template.AddTemplate(renderer, "components/leftnav", "components/leftnav/leftnav")
+type LeftNavComponent struct {
 }
 
 // ===============================================
-// Endpoints
+// Public
 // ===============================================
 
-// GET components/leftnav
-func leftnav(c *gin.Context) {
+func (leftNav *LeftNavComponent) Name() string {
+	return "components/leftnav"
+}
+
+func (leftNav *LeftNavComponent) RegisterComponent(router *gin.RouterGroup, renderer multitemplate.Renderer) error {
+	router.GET("/leftnav", leftNav.Render)
+	template.AddTemplate(renderer, "components/leftnav", "components/leftnav/leftnav")
+	return nil
+}
+
+func (leftNav *LeftNavComponent) Render(c *gin.Context) {
 	c.HTML(200, "components/leftnav", gin.H{
 		"Show": c.Query("show") == "true",
 		"Filenav": gin.H{

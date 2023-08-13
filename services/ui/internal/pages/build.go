@@ -31,8 +31,11 @@ func SetupPages() *gin.Engine {
 		panic(err)
 	}
 
-	components.InitFileNav(componentGroup, renderer)
-	components.InitLeftNav(componentGroup, renderer)
+	err = components.RegisterComponents(componentGroup, renderer)
+	if err != nil {
+		slog.Error("Unexpected error registering components. Bootup failed!", err)
+		panic(err)
+	}
 
 	loadStaticContent(router)
 

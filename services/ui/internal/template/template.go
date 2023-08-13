@@ -3,6 +3,7 @@ package template
 import (
 	"fmt"
 	"github.com/gin-contrib/multitemplate"
+	"github.com/google/uuid"
 	"github.com/rs/zerolog/log"
 	"html/template"
 	"io"
@@ -145,5 +146,6 @@ func defaultTemplateFuncs() template.FuncMap {
 		"GetEditorComponentStyles":  getEditorComponentStyles,
 		"GetThemeCss":               GetCurrentThemeCss,
 		"GetImageInTheme":           GetImageInTheme,
+		"NewUUID":                   uuid.NewString,
 	}
 }

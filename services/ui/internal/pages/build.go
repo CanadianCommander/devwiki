@@ -1,9 +1,11 @@
 package pages
 
 import (
+	"github.com/CanadianCommander/devwiki/services/lib/gocomp"
 	"github.com/CanadianCommander/devwiki/services/ui/internal/components"
 	"github.com/gin-contrib/multitemplate"
 	"github.com/gin-gonic/gin"
+	"log/slog"
 )
 
 // ===============================================
@@ -22,6 +24,13 @@ func SetupPages() *gin.Engine {
 
 	// Components
 	componentGroup := router.Group("/components")
+
+	_, err := gocomp.AutoLoadSimpleComponents(componentGroup.Group("/auto"), renderer, "./assets/components/auto/")
+	if err != nil {
+		slog.Error("Unexpected error loading auto components. Bootup failed!", err)
+		panic(err)
+	}
+
 	components.InitFileNav(componentGroup, renderer)
 	components.InitLeftNav(componentGroup, renderer)
 

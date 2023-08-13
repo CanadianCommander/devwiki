@@ -1,7 +1,7 @@
 package components
 
 import (
-	"github.com/CanadianCommander/devwiki/services/ui/internal/template"
+	"github.com/CanadianCommander/devwiki/services/lib/template"
 	"github.com/gin-contrib/multitemplate"
 	"github.com/gin-gonic/gin"
 )

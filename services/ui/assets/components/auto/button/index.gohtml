@@ -1,0 +1,4 @@
+{{ define "components/button" }}
+    <button class="{{ .type }}">{{ .text }}</button>
+{{ end }}
+{{template "components/button" .}}

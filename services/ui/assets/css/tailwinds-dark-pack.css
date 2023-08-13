@@ -703,8 +703,8 @@ video {
   width: 3rem;
 }
 
-.w-4 {
-  width: 1rem;
+.w-2 {
+  width: 0.5rem;
 }
 
 .w-5\/6 {
@@ -721,10 +721,6 @@ video {
 
 .w-screen {
   width: 100vw;
-}
-
-.w-2 {
-  width: 0.5rem;
 }
 
 .max-w-screen-md {

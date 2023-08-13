@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"github.com/gin-contrib/multitemplate"
 	"github.com/google/uuid"
-	"github.com/rs/zerolog/log"
 	"html/template"
 	"io"
+	"log/slog"
 	"os"
 	"path"
 	"strings"
@@ -31,7 +31,7 @@ const (
 // - templateFiles: the files that comprise the template
 func AddTemplate(renderer multitemplate.Renderer, name string, templateFiles ...string) {
 	templates := append(tmplPathSlice(templateFiles), getDefaultComponentTmpls()...)
-	renderer.AddFromFilesFuncs(name, defaultTemplateFuncs(), templates...)
+	renderer.AddFromFilesFuncs(name, DefaultTemplateFuncs(), templates...)
 }
 
 // AddTemplateDef adds a template definition to the renderer
@@ -48,7 +48,7 @@ func AddTemplateDef(renderer multitemplate.Renderer, name string, defName string
 	for _, file := range templateFiles {
 		templateData, err := readTemplate(tmplPath(file))
 		if err != nil {
-			log.Fatal().Msgf("Could not load template file: %s, during startup", file)
+			slog.Error("Could not load template file: %s, during startup", file)
 			panic(err)
 		}
 		templates = append(templates, templateData)
@@ -56,7 +56,7 @@ func AddTemplateDef(renderer multitemplate.Renderer, name string, defName string
 
 	renderer.AddFromStringsFuncs(
 		name,
-		defaultTemplateFuncs(),
+		DefaultTemplateFuncs(),
 		templates...)
 }
 
@@ -68,13 +68,13 @@ func AddTemplateDef(renderer multitemplate.Renderer, name string, defName string
 func readTemplate(path string) (string, error) {
 	file, err := os.Open(path)
 	if err != nil {
-		log.Error().Msgf("could not open template file: %s", path)
+		slog.Error("could not open template file: %s", path)
 		return "", err
 	}
 
 	bytes, err := io.ReadAll(file)
 	if err != nil {
-		log.Error().Msgf("could not read template file: %s", path)
+		slog.Error("could not read template file: %s", path)
 		return "", err
 	}
 
@@ -130,7 +130,7 @@ func getDefaultComponentTmpls() []string {
 	if defaultComponentTemplates == nil {
 		components, err := discoverTemplates(path.Join(TemplateBasePath, "components"))
 		if err != nil {
-			log.Err(err).Msg("Error during component template discovery")
+			slog.Error("Error during component template discovery")
 			panic(err)
 		}
 		defaultComponentTemplates = components
@@ -139,13 +139,14 @@ func getDefaultComponentTmpls() []string {
 	return defaultComponentTemplates
 }
 
-// defaultTemplateFuncs gets the default template functions
-func defaultTemplateFuncs() template.FuncMap {
+// DefaultTemplateFuncs gets the default template functions
+func DefaultTemplateFuncs() template.FuncMap {
 	return template.FuncMap{
 		"GetEditorComponentScripts": getEditorComponentScripts,
 		"GetEditorComponentStyles":  getEditorComponentStyles,
 		"GetThemeCss":               GetCurrentThemeCss,
 		"GetImageInTheme":           GetImageInTheme,
 		"NewUUID":                   uuid.NewString,
+		"Args":                      Args,
 	}
 }

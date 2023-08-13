@@ -2,7 +2,7 @@ package template
 
 import (
 	"fmt"
-	"github.com/rs/zerolog/log"
+	"log/slog"
 	"regexp"
 )
 
@@ -36,7 +36,7 @@ func GetImageInTheme(imagePath string) string {
 	if len(matches) != 3 {
 		// because this method is called during template rendering, we can't return an error here
 		// suppress the error and log it instead
-		log.Error().Msgf("could not get image in theme: %s", imagePath)
+		slog.Error("could not get image in theme: %s", imagePath)
 		return imagePath
 	} else {
 		return fmt.Sprintf("%s-dark.%s", matches[1], matches[2])

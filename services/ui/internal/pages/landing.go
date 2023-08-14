@@ -24,5 +24,5 @@ func initLandingPage(router *gin.RouterGroup, renderer multitemplate.Renderer) {
 
 // GET /welcome
 func welcomeIndex(c *gin.Context) {
-	c.HTML(http.StatusOK, "welcome/index", gin.H{})
+	c.HTML(http.StatusOK, "welcome/index", GetPrimaryLayoutArgs(c))
 }

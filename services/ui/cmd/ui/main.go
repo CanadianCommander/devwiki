@@ -1,13 +1,13 @@
 package main
 
 import (
-	"github.com/CanadianCommander/devwiki/services/ui/internal/pages"
+	"github.com/CanadianCommander/devwiki/services/ui/internal/web"
 	"log"
 )
 
 func main() {
 
-	router := pages.SetupPages()
+	router := web.SetupPages()
 
 	err := router.Run("0.0.0.0:80")
 	if err != nil {

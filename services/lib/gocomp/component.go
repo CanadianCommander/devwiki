@@ -18,4 +18,7 @@ type Component interface {
 
 	// Render this component to the gin context (write response)
 	Render(c *gin.Context)
+
+	// TemplateParams returns the template parameters to use when rendering this component
+	TemplateParams(c *gin.Context) gin.H
 }

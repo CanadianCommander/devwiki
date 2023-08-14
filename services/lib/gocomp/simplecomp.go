@@ -42,6 +42,11 @@ func (simpleComp *SimpleComponent) RegisterComponent(router *gin.RouterGroup, re
 
 // Render simply renders the template using all query parameters as variables
 func (simpleComp *SimpleComponent) Render(c *gin.Context) {
+	c.HTML(200, simpleComp.name, simpleComp.TemplateParams(c))
+}
+
+// TemplateParams returns the template parameters to use when rendering this component
+func (simpleComp *SimpleComponent) TemplateParams(c *gin.Context) gin.H {
 	queryParams := c.Request.URL.Query()
 	processedParams := make(map[string]interface{})
 	for key, param := range queryParams {
@@ -55,5 +60,5 @@ func (simpleComp *SimpleComponent) Render(c *gin.Context) {
 		}
 	}
 
-	c.HTML(200, simpleComp.name, processedParams)
+	return processedParams
 }

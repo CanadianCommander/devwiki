@@ -22,5 +22,5 @@ func initViewPage(router *gin.RouterGroup, renderer multitemplate.Renderer) {
 
 // GET /view
 func viewIndex(c *gin.Context) {
-	c.HTML(200, "view/index", gin.H{})
+	c.HTML(200, "view/index", GetPrimaryLayoutArgs(c))
 }

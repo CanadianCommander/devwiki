@@ -28,7 +28,7 @@ func initEditPage(router *gin.RouterGroup, renderer multitemplate.Renderer) {
 // GET /edit
 func editIndex(c *gin.Context) {
 
-	c.HTML(http.StatusOK, "edit/index", gin.H{})
+	c.HTML(http.StatusOK, "edit/index", GetPrimaryLayoutArgs(c))
 }
 
 // POST /edit/btn

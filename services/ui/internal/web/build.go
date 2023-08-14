@@ -1,8 +1,9 @@
-package pages
+package web
 
 import (
 	"github.com/CanadianCommander/devwiki/services/lib/gocomp"
 	"github.com/CanadianCommander/devwiki/services/ui/internal/components"
+	"github.com/CanadianCommander/devwiki/services/ui/internal/pages"
 	"github.com/gin-contrib/multitemplate"
 	"github.com/gin-gonic/gin"
 	"log/slog"
@@ -18,9 +19,7 @@ func SetupPages() *gin.Engine {
 	renderer := multitemplate.NewRenderer()
 
 	// Pages
-	initViewPage(router.Group("/"), renderer)
-	initLandingPage(router.Group("/welcome"), renderer)
-	initEditPage(router.Group("/edit"), renderer)
+	pages.InitPages(router.Group("/"), renderer)
 
 	// Components
 	componentGroup := router.Group("/components")
@@ -31,7 +30,7 @@ func SetupPages() *gin.Engine {
 		panic(err)
 	}
 
-	err = components.RegisterComponents(componentGroup, renderer)
+	err = components.GlobalComponentRegistry.RegisterComponents(componentGroup, renderer)
 	if err != nil {
 		slog.Error("Unexpected error registering components. Bootup failed!", err)
 		panic(err)
@@ -50,6 +49,6 @@ func SetupPages() *gin.Engine {
 // loadStaticContent sets up static content paths for the editor
 func loadStaticContent(router *gin.Engine) {
 
-	router.StaticFile("/favicon.ico", "./assets/img/favicon.webp")
+	router.StaticFile("/favicon.ico", "./assets/img/logo-dark.svg")
 	router.Static("/assets", "./assets")
 }

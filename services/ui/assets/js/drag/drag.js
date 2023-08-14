@@ -9,12 +9,14 @@ const dragEndListeners = new Map();
 /**
  * Start dragging an element horizontally by its id
  * @param targetId - id of the element to drag
+ * @param minX - minimum X position that the element can be dragged to
+ * @param maxX - maximum X position that the element can be dragged to
  * @param event - [optional] event that triggered the drag
  */
-window.startDrag = function startDrag(targetId, event = null) {
+window.startDrag = function startDrag(targetId, minX, maxX, event = null) {
     event?.preventDefault();
 
-    dragListeners.set(targetId, (event) => dragNav(event, targetId, 175, window.innerWidth - 400));
+    dragListeners.set(targetId, (event) => dragNav(event, targetId, minX, maxX));
     dragEndListeners.set(targetId, (event) => endDrag(event, targetId));
 
     window.addEventListener("mousemove", dragListeners.get(targetId));
